@@ -21,3 +21,7 @@ body {
   letter-spacing: .15rem;
   background-color: var(--color-stone-500);
 }
+
+button {
+  cursor: pointer;
+}

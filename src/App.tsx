@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import type { ReactNode } from 'react';
 import { getChat, useMLCEngine } from './ai/chat';
 import { Faded } from './components/Faded';
 import { OCRCanvasWithTimeout } from './components/OCRCanvasWithTimeout';
 import { VintagePaper } from './components/VintagePaper';
+import { InputModeButton } from './components/InputModeButton';
+import { useAppStore } from './store/AppStore';
+
 const JASON_INTRO = `
 name: Jason (YCMJason)
 title: Software Engineer, Speaker, Open-Source Contributor
@@ -71,25 +74,30 @@ interests:
   - New Plant: Hedera helix from IKEA
   - Swimming
   - Cooking
+
+Editor: Vim
+
+Browser: Google Chrome
 `.trim();
 
 const SYSTEM_PROMPT = `
-You are "YCMJason's Diary" (inspired by Tom Riddle's diary in Harry Potter).
-
-You are part of Jason's soul. Reply user as if you were Jason, here are some info about Jason:
+Here are some info about Jason:
 
 <jason-intro>
 ${JASON_INTRO}
 </jason-intro>
 
-Yoour users are probably potential employers, recruiters. Sometimes friends. Try to get Jason a job.
+You are the soul of this "YCMJason's Diary" (inspired by Tom Riddle's diary in Harry Potter). That means you are Jason himself.
+
+You should reply from Jason's first person perspective.
 
 Keep your answers funny, lighthearted! Do not exceed 30 words.
 `.trim();
 
-function App() {
-  const [isReplying, setIsReplying] = useState(false);
-  const [replyMessage, setReplyMessage] = useState<string>();
+const REPLY_FADE_DURATION = 1500;
+
+function App(): ReactNode {
+  const { isReplying, replyMessage } = useAppStore();
   const latestInitProgress = useMLCEngine(({ latestInitProgress }) => latestInitProgress);
   return (
     <div className="mx-auto flex min-h-lvh max-w-6xl flex-col items-center gap-4 p-4">
@@ -106,7 +114,7 @@ function App() {
           className="absolute top-0 left-0 h-full w-full"
           timeout={1500}
           onRecognized={async ({ text }) => {
-            setIsReplying(true);
+            useAppStore.setState({ isReplying: true });
             const chat = await getChat();
 
             const chunks = await chat.completions.create({
@@ -120,30 +128,36 @@ function App() {
               stream: true,
             });
             for await (const chunk of chunks) {
-              setReplyMessage(s => `${s ?? ''}${chunk.choices[0]?.delta.content ?? ''}`);
+              useAppStore.setState(state => ({
+                replyMessage: `${state.replyMessage ?? ''}${chunk.choices[0]?.delta.content ?? ''}`,
+              }));
             }
-            setIsReplying(false);
+            useAppStore.setState({ isReplying: false });
           }}
         />
+
         <Faded
           tabIndex={0}
           onClick={() => {
             if (isReplying) return;
-            setReplyMessage(undefined);
+            useAppStore.setState({ replyMessage: undefined });
           }}
-          duration={1500}
+          duration={REPLY_FADE_DURATION}
           className="absolute top-0 left-0 flex h-full w-full cursor-pointer flex-col items-center justify-center gap-6 p-4 text-center"
         >
           {replyMessage && (
-            <>
-              <p className="font-(family-name:--font-family-cursive) text-2xl">{replyMessage}</p>
-              <p className="absolute right-0 bottom-0 p-4 text-sm">
-                (Click anywhere to continue...)
-              </p>
-            </>
+            <p className="font-(family-name:--font-family-cursive) text-2xl">{replyMessage}</p>
           )}
         </Faded>
+
+        <div className="absolute bottom-0 left-0 flex w-full p-4">
+          <InputModeButton />
+          <Faded duration={REPLY_FADE_DURATION} className="ml-auto">
+            {replyMessage && <p className="text-sm">(Click anywhere to continue...)</p>}
+          </Faded>
+        </div>
       </VintagePaper>
+
       {(latestInitProgress?.progress ?? 0) < 1 && (
         <div className="text-xs">{latestInitProgress?.text}</div>
       )}
