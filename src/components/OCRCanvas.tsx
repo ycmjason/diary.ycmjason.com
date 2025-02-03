@@ -7,6 +7,7 @@ export const OCRCanvas = ({
   onDrawStart,
   onDrawEnd,
   className,
+  readonly = false,
   ...props
 }: {
   onDrawStart?: (e: {
@@ -15,6 +16,7 @@ export const OCRCanvas = ({
   onDrawEnd: (e: {
     canvasController: HandwritingRecognizerCanvasController;
   }) => void;
+  readonly?: boolean;
 } & HTMLAttributes<HTMLCanvasElement>) => {
   const canvasControllerRef = useRef<HandwritingRecognizerCanvasController | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -50,7 +52,12 @@ export const OCRCanvas = ({
   return (
     <canvas
       ref={canvasRef}
-      className={clsx('h-full w-full cursor-crosshair touch-none', className)}
+      className={clsx(
+        'h-full w-full',
+        className,
+        !readonly && 'cursor-crosshair touch-none',
+        readonly && 'pointer-events-none',
+      )}
       {...props}
     />
   );

@@ -8,11 +8,14 @@
   --color-diary-closed-hover: hsl(45 90% 50%); /* Enchanted golden ink effect */
   --color-diary-opened-bg: #dad3b7;
   --color-diary-opened-text: #2b1b0f;
+
+  --font-family-cursive: "Caveat", cursive;
+  --font-family-normal: "Special Elite", serif;
 }
 
 html,
 body {
-  font-family: "Special Elite", serif;
+  font-family: var(--font-family-normal);
   font-weight: 400;
   font-style: normal;
   letter-spacing: .15rem;

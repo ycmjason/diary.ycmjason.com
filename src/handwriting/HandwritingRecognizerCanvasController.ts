@@ -36,6 +36,9 @@ export class HandwritingRecognizerCanvasController {
   #currentStroke: Point[] = [];
   #strokes: Stroke[] = [];
   #_isDrawing = false;
+  #resizeObserver: ResizeObserver;
+
+  readonly = false;
 
   readonly destroy: () => void;
   get #isDrawing(): boolean {
@@ -60,8 +63,16 @@ export class HandwritingRecognizerCanvasController {
     if (!ctx) throw new Error('Could not get canvas context');
     this.#canvasContext = ctx;
 
+    this.#resizeObserver = new ResizeObserver(this.#handleResize.bind(this));
+    this.#resizeObserver.observe(canvas);
+
     this.#setupCanvas();
-    this.destroy = this.#attachEventListeners();
+    const detachEventListener = this.#attachEventListeners();
+    this.destroy = () => {
+      this.#resizeObserver.disconnect();
+      detachEventListener();
+      this.#destroyed = true;
+    };
   }
 
   #setupCanvas() {
@@ -107,6 +118,43 @@ export class HandwritingRecognizerCanvasController {
     };
   }
 
+  #handleResize(entries: ResizeObserverEntry[]) {
+    if (this.#destroyed) return;
+
+    const entry = entries[0];
+    if (!entry) return;
+
+    const { width, height } = entry.contentRect;
+
+    this.canvas.width = width;
+    this.canvas.height = height;
+
+    // Redraw existing strokes with new dimensions
+    this.#redrawStrokes();
+  }
+
+  #redrawStrokes() {
+    // Clear the canvas
+    this.#canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // Redraw each stroke
+    for (const stroke of this.#strokes) {
+      const [initialPoint, ...points] = stroke.points;
+      if (!initialPoint) {
+        return;
+      }
+
+      this.#canvasContext.beginPath();
+      this.#canvasContext.moveTo(initialPoint.x, initialPoint.y);
+
+      for (const point of points) {
+        this.#canvasContext.lineTo(point.x, point.y);
+      }
+
+      this.#canvasContext.stroke();
+    }
+  }
+
   #getPointFromEvent({ clientX, clientY }: Pick<MouseEvent, 'clientX' | 'clientY'>): Point {
     const rect = this.canvas.getBoundingClientRect();
     return {
@@ -116,6 +164,7 @@ export class HandwritingRecognizerCanvasController {
   }
 
   #startStroke(e: Pick<MouseEvent, 'clientX' | 'clientY'>) {
+    if (this.readonly) return;
     this.#isDrawing = true;
     const point = this.#getPointFromEvent(e);
     this.#currentStroke = [point];
@@ -124,6 +173,7 @@ export class HandwritingRecognizerCanvasController {
   }
 
   #continueStroke(e: Pick<MouseEvent, 'clientX' | 'clientY'>) {
+    if (this.readonly) return;
     if (!this.#isDrawing) return;
     const point = this.#getPointFromEvent(e);
     this.#currentStroke.push(point);

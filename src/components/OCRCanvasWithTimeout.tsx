@@ -6,10 +6,12 @@ export const OCRCanvasWithTimeout = ({
   timeout,
   onRecognized,
   className,
+  readonly,
   ...props
 }: {
   timeout: number;
   onRecognized: (e: { text: string }) => void;
+  readonly?: boolean;
 } & HTMLAttributes<HTMLCanvasElement>) => {
   const [isDebouncing, setIsDebouncing] = useState(false);
   const debounceAbortControllerRef = useRef<AbortController>(null);
@@ -17,6 +19,7 @@ export const OCRCanvasWithTimeout = ({
 
   return (
     <OCRCanvas
+      readonly={readonly}
       onTransitionEnd={() => {
         transitionEndHandlerRef.current?.();
       }}

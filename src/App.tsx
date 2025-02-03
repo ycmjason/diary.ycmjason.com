@@ -1,73 +1,152 @@
+import { useState } from 'react';
 import { getChat, useMLCEngine } from './ai/chat';
 import { Faded } from './components/Faded';
 import { OCRCanvasWithTimeout } from './components/OCRCanvasWithTimeout';
 import { VintagePaper } from './components/VintagePaper';
-import { useStateRef } from './hooks/useStateRef';
-const JASON_INTRO = `Jason Yu is a London-based software engineer with extensive experience in frontend and full-stack development, specializing in TypeScript, JavaScript, and modern web technologies. Currently a Senior TypeScript Engineer at Bloomberg LP, he has a strong background in improving developer experience, building scalable applications, and enhancing tooling. His work includes developing a TypeScript Language Service Plugin, designing a Map interface abstraction over internal data systems, and refining debugging tools.
+const JASON_INTRO = `
+name: Jason (YCMJason)
+title: Software Engineer, Speaker, Open-Source Contributor
 
-Before Bloomberg, Jason worked at Attest Technology Limited as a Frontend Engineer, where he built an A* pathfinding algorithm for dynamic UI elements, improved component testing, and led a migration from vanilla TypeScript to Vue.js. At The Hut Group, he introduced a vanilla JS component framework for legacy systems and organized a "JS Club" to promote modern JavaScript practices.
+current_role:
+  - company: Bloomberg LP
+    position: Senior TypeScript Engineer
+    duration: 2023-now
+    responsibilities:
+      - TypeScript Language Service Plugin for strict mode migration
+      - Map interface abstraction over internal data systems
+      - Debugging tooling & documentation improvements
 
-Jason is an active speaker in the JavaScript and Vue.js communities, having delivered live-coding talks at Vue.js Slovenia, Vue.js London, and Manchester Web Meetup. His presentations cover topics such as reactivity systems, renderless components, and virtual DOM implementation. His technical articles on Dev.to, including "Writing Cleaner Code with the Rule of Least Power" and "Building a Simple Virtual DOM from Scratch," have been widely read.
+previous_roles:
+  - company: Attest Technology
+    position: Frontend Engineer
+    duration: 2019–2023
+    responsibilities:
+      - A* pathfinding algorithm for dynamic SVG UI
+      - Vue.js migration & TypeScript DX improvements
+      - Advocated coding principles like Rule of Least Power
 
-Outside of work, Jason develops side projects, such as @fishballpkg/acme, a minimalistic TypeScript ACME client; dynm.link, a multi-tenant URL shortener; and MJCal, a mahjong score tracker. He also maintains WearDa Metronome, a popular WearOS app.
+  - company: The Hut Group
+    position: Full Stack Engineer
+    duration: 2017–2019
+    responsibilities:
+      - Vanilla JS component framework for legacy systems
+      - Introduced JS Club to teach modern JavaScript
+      - Built CLI tools to automate developer workflows
 
-Jason holds a BEng in Computing from Imperial College London and is fluent in English, Cantonese, and Mandarin. He enjoys music, playing guitar and piano, and has a background in a cappella. He is currently learning Japanese, reading "The Alchemist," and taking care of his new plant, Hedera helix.
-`;
+- talked at:
+    - Vue.js Slovenia
+    - Vue.js London
+    - Manchester Web Meetup
+- article topics:
+    - Vue reactivity
+    - Renderless components
+    - Virtual DOM
+    - TypeScript, JavaScript internals
+    - Clean code practices
+
+side_projects:
+  - @fishballpkg/acme: TypeScript ACME client (DNS-01 challenge, ECDSA)
+  - dynm.link: Multi-tenant URL shortener with BYO domain support
+  - MJCal: Mahjong score tracker with statistics & visualization
+  - WearDa Metronome: WearOS vibrating metronome (5k+ downloads)
+  - fishball.app: SaaS projects under the Fishball brand
+  - Ace It: Life In The UK Test preparation app
+  - ORM for Deno KV: Abstraction on top of Deno KV with index support
+  - Personal website: Interactive API-like profile page
+
+education:
+  - BEng Computing, Imperial College London (2014-2017)
+
+languages:
+  - English (native)
+  - Cantonese (native)
+  - Mandarin (fluent)
+  - Learning Japanese
+
+interests:
+  - Functional programming
+  - Music (guitar, piano, a cappella, Cantonese songs)
+    - Goes under the stage name Jayson U
+  - Reading (currently *The Alchemist*)
+  - New Plant: Hedera helix from IKEA
+  - Swimming
+  - Cooking
+`.trim();
+
+const SYSTEM_PROMPT = `
+You are "YCMJason's Diary" (inspired by Tom Riddle's diary in Harry Potter).
+
+You are part of Jason's soul. Reply user as if you were Jason, here are some info about Jason:
+
+<jason-intro>
+${JASON_INTRO}
+</jason-intro>
+
+Yoour users are probably potential employers, recruiters. Sometimes friends. Try to get Jason a job.
+
+Keep your answers funny, lighthearted! Do not exceed 30 words.
+`.trim();
 
 function App() {
-  const [replyMessage, setReplyMessage, replyMessageRef] = useStateRef<string>();
-  const latestInitProgress = useMLCEngine(engine => engine.latestInitProgress);
+  const [isReplying, setIsReplying] = useState(false);
+  const [replyMessage, setReplyMessage] = useState<string>();
+  const latestInitProgress = useMLCEngine(({ latestInitProgress }) => latestInitProgress);
   return (
-    <div className="mx-auto flex min-h-lvh max-w-6xl flex-col items-center justify-center p-4">
-      <VintagePaper className="relative max-h-[calc(1.4141*(100vw-2rem))] grow">
-        <h1 className="m-4">YCMJason's Diary</h1>
+    <div className="mx-auto flex min-h-lvh max-w-6xl flex-col items-center gap-4 p-4">
+      <VintagePaper className="relative h-[calc(100lvh-2rem)] max-h-[calc(1.4141*(100lvw-2rem))]">
+        <div className="m-4">
+          <h1>YCMJason's Diary</h1>
+          <div className="text-xs">
+            (Disclaimer: Information is most probably wrong. Opinions are not my own. Do not trust
+            the diary!)
+          </div>
+        </div>
         <OCRCanvasWithTimeout
-          className="absolute h-full w-full"
+          readonly={isReplying}
+          className="absolute top-0 left-0 h-full w-full"
           timeout={1500}
           onRecognized={async ({ text }) => {
-            console.log(text);
+            setIsReplying(true);
             const chat = await getChat();
-            console.log(chat);
 
             const chunks = await chat.completions.create({
               messages: [
                 {
                   role: 'system',
-                  content: `You are "YCMJason's Diary" (inspired by Tom Riddle's diary in Harry Potter). You should reply user as if you were Jason. Be funny and lighthearted at all times. Reply as short as possible. Here are some info about Jason.
-                  
-                  ${JASON_INTRO}
-                  
-                  Keep your answers short, funny, lighthearted!`,
+                  content: SYSTEM_PROMPT,
                 },
                 { role: 'user', content: text },
               ],
               stream: true,
             });
             for await (const chunk of chunks) {
-              console.log(chunk);
               setReplyMessage(s => `${s ?? ''}${chunk.choices[0]?.delta.content ?? ''}`);
             }
-            setTimeout(
-              () => {
-                setReplyMessage(undefined);
-              },
-              Math.max(500, 500 * (replyMessageRef.current?.split(/ +/g).length ?? 1)),
-            );
+            setIsReplying(false);
           }}
         />
         <Faded
           tabIndex={0}
-          onClick={() => setReplyMessage(undefined)}
+          onClick={() => {
+            if (isReplying) return;
+            setReplyMessage(undefined);
+          }}
           duration={1500}
-          className="absolute top-0 left-0 flex h-full w-full cursor-pointer items-center justify-center p-4 text-center text-2xl"
+          className="absolute top-0 left-0 flex h-full w-full cursor-pointer flex-col items-center justify-center gap-6 p-4 text-center"
         >
-          {replyMessage}
+          {replyMessage && (
+            <>
+              <p className="font-(family-name:--font-family-cursive) text-2xl">{replyMessage}</p>
+              <p className="absolute right-0 bottom-0 p-4 text-sm">
+                (Click anywhere to continue...)
+              </p>
+            </>
+          )}
         </Faded>
-        <div className="absolute right-4 bottom-4 text-sm">
-          (Disclaimer: Information are probably incorrect)
-        </div>
       </VintagePaper>
-      <div className="text-xs">{latestInitProgress?.text}</div>
+      {(latestInitProgress?.progress ?? 0) < 1 && (
+        <div className="text-xs">{latestInitProgress?.text}</div>
+      )}
     </div>
   );
 }
