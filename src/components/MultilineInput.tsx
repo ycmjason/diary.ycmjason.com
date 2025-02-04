@@ -43,7 +43,7 @@ export const MultilineInput = ({
       ref={containerRef}
       className={clsx(
         'flex h-full w-full items-center justify-center rounded-md border p-2 text-center',
-        !readonly && 'focus-within:ring focus-within:ring-blue-500',
+        !readonly && 'focus-within:ring focus-within:ring-amber-600',
         className,
       )}
       onClick={() => textareaRef.current?.focus()}

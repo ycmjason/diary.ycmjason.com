@@ -6,6 +6,7 @@ import { VintagePaper } from './components/VintagePaper';
 import { InputModeButton } from './components/InputModeButton';
 import { useAppStore } from './store/AppStore';
 import { MultilineInput } from './components/MultilineInput';
+import { Spinner } from './components/Spinner';
 
 const JASON_INTRO = `
 name: Jason (YCMJason)
@@ -152,7 +153,8 @@ function App(): ReactNode {
                       onSubmit={text => onSubmit(text)}
                       className="h-full w-full rounded border"
                       textareaProps={{
-                        className: 'text-center font-(family-name:--font-family-cursive)',
+                        className:
+                          'text-center font-(family-name:--font-family-cursive) text-amber-800 font-bold text-2xl',
                       }}
                     />
                   )}
@@ -169,11 +171,20 @@ function App(): ReactNode {
             useAppStore.setState({ replyMessage: undefined });
           }}
           duration={REPLY_FADE_DURATION}
-          className="absolute top-0 left-0 flex h-full w-full cursor-pointer flex-col items-center justify-center gap-6 p-4 text-center"
+          className="absolute top-0 left-0 flex h-full w-full cursor-pointer flex-col items-center justify-center gap-6 p-4 text-center text-amber-800"
         >
-          {replyMessage && (
-            <p className="font-(family-name:--font-family-cursive) text-2xl">{replyMessage}</p>
-          )}
+          {(() => {
+            if (!replyMessage && isReplying) {
+              return <Spinner />;
+            }
+            if (replyMessage) {
+              return (
+                <p className="font-(family-name:--font-family-cursive) text-2xl">{replyMessage}</p>
+              );
+            }
+
+            return null;
+          })()}
         </Faded>
 
         <div className="mt-auto flex w-full p-4">

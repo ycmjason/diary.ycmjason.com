@@ -53,7 +53,6 @@ export const OCRCanvas = ({
     <canvas
       ref={canvasRef}
       className={clsx(
-        'h-full w-full',
         className,
         !readonly && 'cursor-crosshair touch-none',
         readonly && 'pointer-events-none',

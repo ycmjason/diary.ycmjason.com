@@ -1,3 +1,5 @@
+import { getRootCSSVariable } from '../utils/getCSSVariable';
+
 interface RecognitionOptions {
   language?: 'en';
   numOfWords?: number;
@@ -36,7 +38,6 @@ export class HandwritingRecognizerCanvasController {
   #currentStroke: Point[] = [];
   #strokes: Stroke[] = [];
   #_isDrawing = false;
-  #resizeObserver: ResizeObserver;
 
   readonly = false;
 
@@ -63,24 +64,19 @@ export class HandwritingRecognizerCanvasController {
     if (!ctx) throw new Error('Could not get canvas context');
     this.#canvasContext = ctx;
 
-    this.#resizeObserver = new ResizeObserver(this.#handleResize.bind(this));
-    this.#resizeObserver.observe(canvas);
-
     this.#setupCanvas();
     const detachEventListener = this.#attachEventListeners();
     this.destroy = () => {
-      this.#resizeObserver.disconnect();
       detachEventListener();
       this.#destroyed = true;
     };
   }
 
   #setupCanvas() {
-    this.#canvasContext.strokeStyle = 'rgba(77, 26, 1, 0.7)';
+    this.#canvasContext.strokeStyle = getRootCSSVariable('--color-amber-800');
     this.#canvasContext.lineCap = 'round';
     this.#canvasContext.lineJoin = 'round';
     this.#canvasContext.lineWidth = this.#options.lineWidth ?? DEFAULT_LINE_WIDTH;
-    this.clear();
   }
 
   #attachEventListeners(): () => void {
@@ -116,43 +112,6 @@ export class HandwritingRecognizerCanvasController {
       this.canvas.removeEventListener('touchmove', handleTouchMove);
       this.canvas.removeEventListener('touchend', handleTouchEnd);
     };
-  }
-
-  #handleResize(entries: ResizeObserverEntry[]) {
-    if (this.#destroyed) return;
-
-    const entry = entries[0];
-    if (!entry) return;
-
-    const { width, height } = entry.contentRect;
-
-    this.canvas.width = width;
-    this.canvas.height = height;
-
-    // Redraw existing strokes with new dimensions
-    this.#redrawStrokes();
-  }
-
-  #redrawStrokes() {
-    // Clear the canvas
-    this.#canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-    // Redraw each stroke
-    for (const stroke of this.#strokes) {
-      const [initialPoint, ...points] = stroke.points;
-      if (!initialPoint) {
-        return;
-      }
-
-      this.#canvasContext.beginPath();
-      this.#canvasContext.moveTo(initialPoint.x, initialPoint.y);
-
-      for (const point of points) {
-        this.#canvasContext.lineTo(point.x, point.y);
-      }
-
-      this.#canvasContext.stroke();
-    }
   }
 
   #getPointFromEvent({ clientX, clientY }: Pick<MouseEvent, 'clientX' | 'clientY'>): Point {
