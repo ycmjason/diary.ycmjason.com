@@ -6,7 +6,7 @@ import { VintagePaper } from './components/VintagePaper';
 import { InputModeButton } from './components/InputModeButton';
 import { useAppStore } from './store/AppStore';
 import { MultilineInput } from './components/MultilineInput';
-import { Spinner } from './components/Spinner';
+import { LLMLoading } from './components/LLMLoading';
 
 const JASON_INTRO = `
 name: Jason (YCMJason)
@@ -175,7 +175,7 @@ function App(): ReactNode {
         >
           {(() => {
             if (!replyMessage && isReplying) {
-              return <Spinner />;
+              return <LLMLoading />;
             }
             if (replyMessage) {
               return (
