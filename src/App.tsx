@@ -5,6 +5,7 @@ import { OCRCanvasWithTimeout } from './components/OCRCanvasWithTimeout';
 import { VintagePaper } from './components/VintagePaper';
 import { InputModeButton } from './components/InputModeButton';
 import { useAppStore } from './store/AppStore';
+import { MultilineInput } from './components/MultilineInput';
 
 const JASON_INTRO = `
 name: Jason (YCMJason)
@@ -97,11 +98,33 @@ Keep your answers funny, lighthearted! Do not exceed 30 words.
 const REPLY_FADE_DURATION = 1500;
 
 function App(): ReactNode {
-  const { isReplying, replyMessage } = useAppStore();
+  const { isReplying, replyMessage, inputMode } = useAppStore();
   const latestInitProgress = useMLCEngine(({ latestInitProgress }) => latestInitProgress);
+  const onSubmit = async (text: string) => {
+    useAppStore.setState({ isReplying: true });
+    const chat = await getChat();
+
+    const chunks = await chat.completions.create({
+      messages: [
+        {
+          role: 'system',
+          content: SYSTEM_PROMPT,
+        },
+        { role: 'user', content: text },
+      ],
+      stream: true,
+    });
+    for await (const chunk of chunks) {
+      useAppStore.setState(state => ({
+        replyMessage: `${state.replyMessage ?? ''}${chunk.choices[0]?.delta.content ?? ''}`,
+      }));
+    }
+    useAppStore.setState({ isReplying: false });
+  };
+
   return (
     <div className="mx-auto flex min-h-lvh max-w-6xl flex-col items-center gap-4 p-4">
-      <VintagePaper className="relative h-[calc(100lvh-2rem)] max-h-[calc(1.4141*(100lvw-2rem))]">
+      <VintagePaper className="relative flex h-[calc(100lvh-2rem)] max-h-[calc(1.4141*(100lvw-2rem))] flex-col">
         <div className="m-4">
           <h1>YCMJason's Diary</h1>
           <div className="text-xs">
@@ -109,32 +132,35 @@ function App(): ReactNode {
             the diary!)
           </div>
         </div>
-        <OCRCanvasWithTimeout
-          readonly={isReplying}
-          className="absolute top-0 left-0 h-full w-full"
-          timeout={1500}
-          onRecognized={async ({ text }) => {
-            useAppStore.setState({ isReplying: true });
-            const chat = await getChat();
-
-            const chunks = await chat.completions.create({
-              messages: [
-                {
-                  role: 'system',
-                  content: SYSTEM_PROMPT,
-                },
-                { role: 'user', content: text },
-              ],
-              stream: true,
-            });
-            for await (const chunk of chunks) {
-              useAppStore.setState(state => ({
-                replyMessage: `${state.replyMessage ?? ''}${chunk.choices[0]?.delta.content ?? ''}`,
-              }));
-            }
-            useAppStore.setState({ isReplying: false });
-          }}
-        />
+        {
+          {
+            handwriting: (
+              <div className="w-full grow">
+                <OCRCanvasWithTimeout
+                  readonly={isReplying || replyMessage !== undefined}
+                  className="h-full w-full"
+                  timeout={1500}
+                  onRecognized={({ text }) => onSubmit(text)}
+                />
+              </div>
+            ),
+            keyboard: (
+              <div className="grow px-4">
+                <Faded duration={REPLY_FADE_DURATION} className="h-full">
+                  {!isReplying && replyMessage === undefined && (
+                    <MultilineInput
+                      onSubmit={text => onSubmit(text)}
+                      className="h-full w-full rounded border"
+                      textareaProps={{
+                        className: 'text-center font-(family-name:--font-family-cursive)',
+                      }}
+                    />
+                  )}
+                </Faded>
+              </div>
+            ),
+          }[inputMode]
+        }
 
         <Faded
           tabIndex={0}
@@ -150,7 +176,7 @@ function App(): ReactNode {
           )}
         </Faded>
 
-        <div className="absolute bottom-0 left-0 flex w-full p-4">
+        <div className="mt-auto flex w-full p-4">
           <InputModeButton />
           <Faded duration={REPLY_FADE_DURATION} className="ml-auto">
             {replyMessage && <p className="text-sm">(Click anywhere to continue...)</p>}

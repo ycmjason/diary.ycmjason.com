@@ -9,3 +9,14 @@ export const useAppStore = create<{
   replyMessage: undefined,
   isReplying: false,
 }));
+
+export const toggleInputMode = (): void => {
+  useAppStore.setState(({ inputMode }) => ({
+    inputMode: (
+      {
+        keyboard: 'handwriting',
+        handwriting: 'keyboard',
+      } as const
+    )[inputMode],
+  }));
+};

@@ -9,9 +9,9 @@ export const Faded = ({
     <AnimatePresence>
       {props.children && (
         <motion.div
-          initial={{ filter: 'opacity(0) blur(var(--blur-xs)' }}
+          initial={{ filter: 'opacity(1) blur(0)' }}
           animate={{ filter: 'opacity(1) blur(0)' }}
-          exit={{ filter: 'opacity(0) blur(var(--blur-xs)' }}
+          exit={{ filter: 'opacity(0) blur(var(--blur-xs))' }}
           transition={{
             duration: duration / 1000,
             ease: 'easeInOut',
