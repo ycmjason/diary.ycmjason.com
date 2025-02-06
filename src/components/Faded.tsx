@@ -6,16 +6,14 @@ export const Faded = ({
   ...props
 }: { duration?: number } & ComponentProps<typeof motion.div>): ReactNode => {
   return (
-    <AnimatePresence>
+    <AnimatePresence propagate>
       {props.children && (
         <motion.div
-          initial={{ filter: 'opacity(1) blur(0)' }}
+          key="child"
+          initial={{ filter: 'opacity(0) blur(var(--blur-xs))' }}
           animate={{ filter: 'opacity(1) blur(0)' }}
           exit={{ filter: 'opacity(0) blur(var(--blur-xs))' }}
-          transition={{
-            duration: duration / 1000,
-            ease: 'easeInOut',
-          }}
+          transition={{ duration: duration / 1000, ease: 'easeInOut' }}
           {...props}
         />
       )}
