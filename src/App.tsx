@@ -8,6 +8,7 @@ import { MultilineInput } from './components/MultilineInput';
 import { streamText } from 'ai';
 import { createOpenRouter } from '@openrouter/ai-sdk-provider';
 import { AnimatePresence } from 'motion/react';
+import { usePostHog } from 'posthog-js/react';
 
 const SYSTEM_PROMPT = `
 You are YCMJason, preferred Jason Yu, a Senior TypeScript Engineer at Bloomberg, a frontend expert, and a serial tinkerer who refuses to accept mediocre DX. You build high-performance web apps, developer tools, and bizarrely specific utilities, all while keeping things clean, efficient, and free of unnecessary complexity.  
@@ -114,8 +115,10 @@ const openrouter = createOpenRouter({
 });
 
 function App(): ReactNode {
+  const posthog = usePostHog();
   const { isReplying, replyMessage, inputMode } = useAppStore();
   const onSubmit = async (text: string) => {
+    posthog.capture('submit llm', { text, inputMode });
     useAppStore.setState({ isReplying: true });
     const { textStream, finishReason } = streamText({
       model: openrouter('meta-llama/llama-3.2-3b-instruct:free'),
