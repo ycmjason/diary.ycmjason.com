@@ -17,13 +17,13 @@ export const InputModeButton = (): ReactNode => {
           keyboard: (
             <KeyboardIcon
               aria-label="keyboard mode on, click to enable handwriting mode"
-              className="h-4 w-4"
+              className="h-6 w-6"
             />
           ),
           handwriting: (
             <FreehandIcon
               aria-label="handwriting mode on, click to enable keyboard mode"
-              className="h-4 w-4"
+              className="h-6 w-6"
             />
           ),
         }[inputMode]
