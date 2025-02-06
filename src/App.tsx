@@ -201,7 +201,7 @@ function App(): ReactNode {
           </AnimatePresence>
         </div>
 
-        <div className="mt-auto flex w-full p-4">
+        <div className="mt-auto flex w-full items-end p-4">
           <InputModeButton />
           <Faded duration={REPLY_FADE_DURATION} className="ml-auto">
             {replyMessage && <p className="text-sm">(Click anywhere to continue...)</p>}
