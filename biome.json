@@ -32,14 +32,6 @@
               {
                 "name": "useLatestRef",
                 "stableResult": true
-              },
-              {
-                "name": "useNeverChanging",
-                "stableResult": true
-              },
-              {
-                "name": "useDebounce",
-                "stableResult": true
               }
             ]
           }

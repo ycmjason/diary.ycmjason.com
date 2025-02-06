@@ -1,5 +1,3 @@
-import { getRootCSSVariable } from '../utils/getCSSVariable';
-
 interface RecognitionOptions {
   language?: 'en';
   numOfWords?: number;
@@ -25,12 +23,14 @@ const GOOGLE_HANDWRITING_API =
   'https://www.google.com/inputtools/request?ime=handwriting&app=mobilesearch&cs=1&oe=UTF-8';
 
 export type HandwritingRecognizerCanvasControllerOptions = {
+  strokeStyle?: string;
   lineWidth?: number;
   onDrawStart?: () => void;
   onDrawEnd?: () => void;
 };
 
 const DEFAULT_LINE_WIDTH = 3;
+const DEFAULT_STROKE_STYLE = 'black';
 export class HandwritingRecognizerCanvasController {
   canvas: HTMLCanvasElement;
   #destroyed = false;
@@ -73,7 +73,7 @@ export class HandwritingRecognizerCanvasController {
   }
 
   #setupCanvas() {
-    this.#canvasContext.strokeStyle = getRootCSSVariable('--color-amber-800');
+    this.#canvasContext.strokeStyle = this.#options.strokeStyle ?? DEFAULT_STROKE_STYLE;
     this.#canvasContext.lineCap = 'round';
     this.#canvasContext.lineJoin = 'round';
     this.#canvasContext.lineWidth = this.#options.lineWidth ?? DEFAULT_LINE_WIDTH;

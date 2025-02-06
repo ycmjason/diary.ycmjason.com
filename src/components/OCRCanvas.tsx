@@ -2,6 +2,7 @@ import { type HTMLAttributes, useEffect, useRef } from 'react';
 import { HandwritingRecognizerCanvasController } from '../handwriting/HandwritingRecognizerCanvasController';
 import { useStableCallback } from '../hooks/useStableCallback';
 import { clsx } from '../utils/clsx';
+import { getRootCSSVariable } from '../utils/getCSSVariable';
 
 export const OCRCanvas = ({
   onDrawStart,
@@ -13,7 +14,7 @@ export const OCRCanvas = ({
   onDrawStart?: (e: {
     canvasController: HandwritingRecognizerCanvasController;
   }) => void;
-  onDrawEnd: (e: {
+  onDrawEnd?: (e: {
     canvasController: HandwritingRecognizerCanvasController;
   }) => void;
   readonly?: boolean;
@@ -29,7 +30,7 @@ export const OCRCanvas = ({
   const onDrawEndStable = useStableCallback(() => {
     const canvasController = canvasControllerRef.current;
     if (canvasController === null) return;
-    onDrawEnd({ canvasController });
+    onDrawEnd?.({ canvasController });
   });
 
   useEffect(() => {
@@ -42,6 +43,7 @@ export const OCRCanvas = ({
     canvas.height = height;
 
     canvasControllerRef.current = new HandwritingRecognizerCanvasController(canvas, {
+      strokeStyle: getRootCSSVariable('--color-amber-800'),
       onDrawStart: onDrawStartStable,
       onDrawEnd: onDrawEndStable,
     });

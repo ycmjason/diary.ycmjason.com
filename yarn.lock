@@ -695,135 +695,135 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/rollup-android-arm-eabi@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-android-arm-eabi@npm:4.34.0"
+"@rollup/rollup-android-arm-eabi@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-android-arm-eabi@npm:4.34.4"
   conditions: os=android & cpu=arm
   languageName: node
   linkType: hard
 
-"@rollup/rollup-android-arm64@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-android-arm64@npm:4.34.0"
+"@rollup/rollup-android-arm64@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-android-arm64@npm:4.34.4"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"@rollup/rollup-darwin-arm64@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-darwin-arm64@npm:4.34.0"
+"@rollup/rollup-darwin-arm64@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-darwin-arm64@npm:4.34.4"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@rollup/rollup-darwin-x64@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-darwin-x64@npm:4.34.0"
+"@rollup/rollup-darwin-x64@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-darwin-x64@npm:4.34.4"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@rollup/rollup-freebsd-arm64@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-freebsd-arm64@npm:4.34.0"
+"@rollup/rollup-freebsd-arm64@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-freebsd-arm64@npm:4.34.4"
   conditions: os=freebsd & cpu=arm64
   languageName: node
   linkType: hard
 
-"@rollup/rollup-freebsd-x64@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-freebsd-x64@npm:4.34.0"
+"@rollup/rollup-freebsd-x64@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-freebsd-x64@npm:4.34.4"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-arm-gnueabihf@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-linux-arm-gnueabihf@npm:4.34.0"
+"@rollup/rollup-linux-arm-gnueabihf@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-linux-arm-gnueabihf@npm:4.34.4"
   conditions: os=linux & cpu=arm & libc=glibc
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-arm-musleabihf@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-linux-arm-musleabihf@npm:4.34.0"
+"@rollup/rollup-linux-arm-musleabihf@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-linux-arm-musleabihf@npm:4.34.4"
   conditions: os=linux & cpu=arm & libc=musl
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-arm64-gnu@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-linux-arm64-gnu@npm:4.34.0"
+"@rollup/rollup-linux-arm64-gnu@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-linux-arm64-gnu@npm:4.34.4"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-arm64-musl@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-linux-arm64-musl@npm:4.34.0"
+"@rollup/rollup-linux-arm64-musl@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-linux-arm64-musl@npm:4.34.4"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-loongarch64-gnu@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-linux-loongarch64-gnu@npm:4.34.0"
+"@rollup/rollup-linux-loongarch64-gnu@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-linux-loongarch64-gnu@npm:4.34.4"
   conditions: os=linux & cpu=loong64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-powerpc64le-gnu@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-linux-powerpc64le-gnu@npm:4.34.0"
+"@rollup/rollup-linux-powerpc64le-gnu@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-linux-powerpc64le-gnu@npm:4.34.4"
   conditions: os=linux & cpu=ppc64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-riscv64-gnu@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-linux-riscv64-gnu@npm:4.34.0"
+"@rollup/rollup-linux-riscv64-gnu@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-linux-riscv64-gnu@npm:4.34.4"
   conditions: os=linux & cpu=riscv64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-s390x-gnu@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-linux-s390x-gnu@npm:4.34.0"
+"@rollup/rollup-linux-s390x-gnu@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-linux-s390x-gnu@npm:4.34.4"
   conditions: os=linux & cpu=s390x & libc=glibc
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-x64-gnu@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-linux-x64-gnu@npm:4.34.0"
+"@rollup/rollup-linux-x64-gnu@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-linux-x64-gnu@npm:4.34.4"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-x64-musl@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-linux-x64-musl@npm:4.34.0"
+"@rollup/rollup-linux-x64-musl@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-linux-x64-musl@npm:4.34.4"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@rollup/rollup-win32-arm64-msvc@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-win32-arm64-msvc@npm:4.34.0"
+"@rollup/rollup-win32-arm64-msvc@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-win32-arm64-msvc@npm:4.34.4"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@rollup/rollup-win32-ia32-msvc@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-win32-ia32-msvc@npm:4.34.0"
+"@rollup/rollup-win32-ia32-msvc@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-win32-ia32-msvc@npm:4.34.4"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@rollup/rollup-win32-x64-msvc@npm:4.34.0":
-  version: 4.34.0
-  resolution: "@rollup/rollup-win32-x64-msvc@npm:4.34.0"
+"@rollup/rollup-win32-x64-msvc@npm:4.34.4":
+  version: 4.34.4
+  resolution: "@rollup/rollup-win32-x64-msvc@npm:4.34.4"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -955,109 +955,109 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tailwindcss/node@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "@tailwindcss/node@npm:4.0.2"
+"@tailwindcss/node@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "@tailwindcss/node@npm:4.0.4"
   dependencies:
     enhanced-resolve: "npm:^5.18.0"
     jiti: "npm:^2.4.2"
-    tailwindcss: "npm:4.0.2"
-  checksum: 10c0/3c19e6045b3ecb24b4f9f6cecd8f606ccdea4f6050812509d181cf003be6b6be36a39def082d38e35e630956efa83d161ac12cbfa1a6d77f300f210902b7a5fa
+    tailwindcss: "npm:4.0.4"
+  checksum: 10c0/28b2398f4e4a79972d489155688240f571ee40705ad3daa818f33b1b3c0a476a4e48202540ca070c2de5fac59d518184cc8461e382c97457e0753545978578ec
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-android-arm64@npm:4.0.2":
-  version: 4.0.2
-  resolution: "@tailwindcss/oxide-android-arm64@npm:4.0.2"
+"@tailwindcss/oxide-android-arm64@npm:4.0.4":
+  version: 4.0.4
+  resolution: "@tailwindcss/oxide-android-arm64@npm:4.0.4"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-darwin-arm64@npm:4.0.2":
-  version: 4.0.2
-  resolution: "@tailwindcss/oxide-darwin-arm64@npm:4.0.2"
+"@tailwindcss/oxide-darwin-arm64@npm:4.0.4":
+  version: 4.0.4
+  resolution: "@tailwindcss/oxide-darwin-arm64@npm:4.0.4"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-darwin-x64@npm:4.0.2":
-  version: 4.0.2
-  resolution: "@tailwindcss/oxide-darwin-x64@npm:4.0.2"
+"@tailwindcss/oxide-darwin-x64@npm:4.0.4":
+  version: 4.0.4
+  resolution: "@tailwindcss/oxide-darwin-x64@npm:4.0.4"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-freebsd-x64@npm:4.0.2":
-  version: 4.0.2
-  resolution: "@tailwindcss/oxide-freebsd-x64@npm:4.0.2"
+"@tailwindcss/oxide-freebsd-x64@npm:4.0.4":
+  version: 4.0.4
+  resolution: "@tailwindcss/oxide-freebsd-x64@npm:4.0.4"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-linux-arm-gnueabihf@npm:4.0.2":
-  version: 4.0.2
-  resolution: "@tailwindcss/oxide-linux-arm-gnueabihf@npm:4.0.2"
+"@tailwindcss/oxide-linux-arm-gnueabihf@npm:4.0.4":
+  version: 4.0.4
+  resolution: "@tailwindcss/oxide-linux-arm-gnueabihf@npm:4.0.4"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-linux-arm64-gnu@npm:4.0.2":
-  version: 4.0.2
-  resolution: "@tailwindcss/oxide-linux-arm64-gnu@npm:4.0.2"
+"@tailwindcss/oxide-linux-arm64-gnu@npm:4.0.4":
+  version: 4.0.4
+  resolution: "@tailwindcss/oxide-linux-arm64-gnu@npm:4.0.4"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-linux-arm64-musl@npm:4.0.2":
-  version: 4.0.2
-  resolution: "@tailwindcss/oxide-linux-arm64-musl@npm:4.0.2"
+"@tailwindcss/oxide-linux-arm64-musl@npm:4.0.4":
+  version: 4.0.4
+  resolution: "@tailwindcss/oxide-linux-arm64-musl@npm:4.0.4"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-linux-x64-gnu@npm:4.0.2":
-  version: 4.0.2
-  resolution: "@tailwindcss/oxide-linux-x64-gnu@npm:4.0.2"
+"@tailwindcss/oxide-linux-x64-gnu@npm:4.0.4":
+  version: 4.0.4
+  resolution: "@tailwindcss/oxide-linux-x64-gnu@npm:4.0.4"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-linux-x64-musl@npm:4.0.2":
-  version: 4.0.2
-  resolution: "@tailwindcss/oxide-linux-x64-musl@npm:4.0.2"
+"@tailwindcss/oxide-linux-x64-musl@npm:4.0.4":
+  version: 4.0.4
+  resolution: "@tailwindcss/oxide-linux-x64-musl@npm:4.0.4"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-win32-arm64-msvc@npm:4.0.2":
-  version: 4.0.2
-  resolution: "@tailwindcss/oxide-win32-arm64-msvc@npm:4.0.2"
+"@tailwindcss/oxide-win32-arm64-msvc@npm:4.0.4":
+  version: 4.0.4
+  resolution: "@tailwindcss/oxide-win32-arm64-msvc@npm:4.0.4"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-win32-x64-msvc@npm:4.0.2":
-  version: 4.0.2
-  resolution: "@tailwindcss/oxide-win32-x64-msvc@npm:4.0.2"
+"@tailwindcss/oxide-win32-x64-msvc@npm:4.0.4":
+  version: 4.0.4
+  resolution: "@tailwindcss/oxide-win32-x64-msvc@npm:4.0.4"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "@tailwindcss/oxide@npm:4.0.2"
+"@tailwindcss/oxide@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "@tailwindcss/oxide@npm:4.0.4"
   dependencies:
-    "@tailwindcss/oxide-android-arm64": "npm:4.0.2"
-    "@tailwindcss/oxide-darwin-arm64": "npm:4.0.2"
-    "@tailwindcss/oxide-darwin-x64": "npm:4.0.2"
-    "@tailwindcss/oxide-freebsd-x64": "npm:4.0.2"
-    "@tailwindcss/oxide-linux-arm-gnueabihf": "npm:4.0.2"
-    "@tailwindcss/oxide-linux-arm64-gnu": "npm:4.0.2"
-    "@tailwindcss/oxide-linux-arm64-musl": "npm:4.0.2"
-    "@tailwindcss/oxide-linux-x64-gnu": "npm:4.0.2"
-    "@tailwindcss/oxide-linux-x64-musl": "npm:4.0.2"
-    "@tailwindcss/oxide-win32-arm64-msvc": "npm:4.0.2"
-    "@tailwindcss/oxide-win32-x64-msvc": "npm:4.0.2"
+    "@tailwindcss/oxide-android-arm64": "npm:4.0.4"
+    "@tailwindcss/oxide-darwin-arm64": "npm:4.0.4"
+    "@tailwindcss/oxide-darwin-x64": "npm:4.0.4"
+    "@tailwindcss/oxide-freebsd-x64": "npm:4.0.4"
+    "@tailwindcss/oxide-linux-arm-gnueabihf": "npm:4.0.4"
+    "@tailwindcss/oxide-linux-arm64-gnu": "npm:4.0.4"
+    "@tailwindcss/oxide-linux-arm64-musl": "npm:4.0.4"
+    "@tailwindcss/oxide-linux-x64-gnu": "npm:4.0.4"
+    "@tailwindcss/oxide-linux-x64-musl": "npm:4.0.4"
+    "@tailwindcss/oxide-win32-arm64-msvc": "npm:4.0.4"
+    "@tailwindcss/oxide-win32-x64-msvc": "npm:4.0.4"
   dependenciesMeta:
     "@tailwindcss/oxide-android-arm64":
       optional: true
@@ -1081,21 +1081,21 @@ __metadata:
       optional: true
     "@tailwindcss/oxide-win32-x64-msvc":
       optional: true
-  checksum: 10c0/8c496f2572f1ded56267bfb3d0d023a9eca79f2e6ccb5746121a45369c13877eee02b4383e998913fb21d0ebc71d9c6b30348a43c118be08975a3d56d77f8f88
+  checksum: 10c0/0b66441c56b5cafa51556b4a927a0c7a0cacbfc28b0c9e865f7fc09fcc1537edaccd11103393d26b90e61ffe40fe351027f5d399b46bee034a2e99f81c3bf2cf
   languageName: node
   linkType: hard
 
-"@tailwindcss/vite@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "@tailwindcss/vite@npm:4.0.2"
+"@tailwindcss/vite@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "@tailwindcss/vite@npm:4.0.4"
   dependencies:
-    "@tailwindcss/node": "npm:^4.0.2"
-    "@tailwindcss/oxide": "npm:^4.0.2"
+    "@tailwindcss/node": "npm:^4.0.4"
+    "@tailwindcss/oxide": "npm:^4.0.4"
     lightningcss: "npm:^1.29.1"
-    tailwindcss: "npm:4.0.2"
+    tailwindcss: "npm:4.0.4"
   peerDependencies:
     vite: ^5.2.0 || ^6
-  checksum: 10c0/f1ce94f0586a9858a973c061429a133fff25b04e338f1653cd30399be7c03d03d5c7cf1b1e3116f326ffa1b8a57e467e38b7e74c48de42544199183a2f7157e2
+  checksum: 10c0/5872accca11acdc12a6a401d54c8ee99c3883f7b5d641b8eb46aebf2b83bbd53d87962dab509416d0f36fd84e004002876313d184a12b370a7af462a6136774d
   languageName: node
   linkType: hard
 
@@ -1663,9 +1663,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^12.0.6":
-  version: 12.0.6
-  resolution: "framer-motion@npm:12.0.6"
+"framer-motion@npm:^12.4.0":
+  version: 12.4.0
+  resolution: "framer-motion@npm:12.4.0"
   dependencies:
     motion-dom: "npm:^12.0.0"
     motion-utils: "npm:^12.0.0"
@@ -1681,7 +1681,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/06d01186a52163225ded9e60563b1aba9a52b14db2516bc7c87de0efd48bf149531d5f6ad4db254254e61ec142aed04e4b119d35063ef13b537c4da35aece762
+  checksum: 10c0/ad19269b9d152a0f422e6414a3a74d6df32a3af90c7a0ac83cad158b9274800ccdff8d210cef11ff2fd2c1e805c9b5025033943ad609517c27e4630df2eb5368
   languageName: node
   linkType: hard
 
@@ -2205,11 +2205,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"motion@npm:^12.0.6":
-  version: 12.0.6
-  resolution: "motion@npm:12.0.6"
+"motion@npm:^12.4.0":
+  version: 12.4.0
+  resolution: "motion@npm:12.4.0"
   dependencies:
-    framer-motion: "npm:^12.0.6"
+    framer-motion: "npm:^12.4.0"
     tslib: "npm:^2.4.0"
   peerDependencies:
     "@emotion/is-prop-valid": "*"
@@ -2222,7 +2222,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/649df5d9869bc0f313ecd1826691a1f1d1c2a5edbc95384d18af7d3bb858a84c9c1f27bcd398378bff69af52a2dcc8ae01190b26be818e9740140e60a00785cc
+  checksum: 10c0/ff53d4361c41fd7af203750bfd20cd80de881d24687917c2fc8ad941e59f8b1b1e63a63edf4bb05e03be72787b2316e0599025db16a1d53ebfe45f42ac8fdd99
   languageName: node
   linkType: hard
 
@@ -2370,7 +2370,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.49":
+"postcss@npm:^8.5.1":
   version: 8.5.1
   resolution: "postcss@npm:8.5.1"
   dependencies:
@@ -2467,29 +2467,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^4.23.0":
-  version: 4.34.0
-  resolution: "rollup@npm:4.34.0"
+"rollup@npm:^4.30.1":
+  version: 4.34.4
+  resolution: "rollup@npm:4.34.4"
   dependencies:
-    "@rollup/rollup-android-arm-eabi": "npm:4.34.0"
-    "@rollup/rollup-android-arm64": "npm:4.34.0"
-    "@rollup/rollup-darwin-arm64": "npm:4.34.0"
-    "@rollup/rollup-darwin-x64": "npm:4.34.0"
-    "@rollup/rollup-freebsd-arm64": "npm:4.34.0"
-    "@rollup/rollup-freebsd-x64": "npm:4.34.0"
-    "@rollup/rollup-linux-arm-gnueabihf": "npm:4.34.0"
-    "@rollup/rollup-linux-arm-musleabihf": "npm:4.34.0"
-    "@rollup/rollup-linux-arm64-gnu": "npm:4.34.0"
-    "@rollup/rollup-linux-arm64-musl": "npm:4.34.0"
-    "@rollup/rollup-linux-loongarch64-gnu": "npm:4.34.0"
-    "@rollup/rollup-linux-powerpc64le-gnu": "npm:4.34.0"
-    "@rollup/rollup-linux-riscv64-gnu": "npm:4.34.0"
-    "@rollup/rollup-linux-s390x-gnu": "npm:4.34.0"
-    "@rollup/rollup-linux-x64-gnu": "npm:4.34.0"
-    "@rollup/rollup-linux-x64-musl": "npm:4.34.0"
-    "@rollup/rollup-win32-arm64-msvc": "npm:4.34.0"
-    "@rollup/rollup-win32-ia32-msvc": "npm:4.34.0"
-    "@rollup/rollup-win32-x64-msvc": "npm:4.34.0"
+    "@rollup/rollup-android-arm-eabi": "npm:4.34.4"
+    "@rollup/rollup-android-arm64": "npm:4.34.4"
+    "@rollup/rollup-darwin-arm64": "npm:4.34.4"
+    "@rollup/rollup-darwin-x64": "npm:4.34.4"
+    "@rollup/rollup-freebsd-arm64": "npm:4.34.4"
+    "@rollup/rollup-freebsd-x64": "npm:4.34.4"
+    "@rollup/rollup-linux-arm-gnueabihf": "npm:4.34.4"
+    "@rollup/rollup-linux-arm-musleabihf": "npm:4.34.4"
+    "@rollup/rollup-linux-arm64-gnu": "npm:4.34.4"
+    "@rollup/rollup-linux-arm64-musl": "npm:4.34.4"
+    "@rollup/rollup-linux-loongarch64-gnu": "npm:4.34.4"
+    "@rollup/rollup-linux-powerpc64le-gnu": "npm:4.34.4"
+    "@rollup/rollup-linux-riscv64-gnu": "npm:4.34.4"
+    "@rollup/rollup-linux-s390x-gnu": "npm:4.34.4"
+    "@rollup/rollup-linux-x64-gnu": "npm:4.34.4"
+    "@rollup/rollup-linux-x64-musl": "npm:4.34.4"
+    "@rollup/rollup-win32-arm64-msvc": "npm:4.34.4"
+    "@rollup/rollup-win32-ia32-msvc": "npm:4.34.4"
+    "@rollup/rollup-win32-x64-msvc": "npm:4.34.4"
     "@types/estree": "npm:1.0.6"
     fsevents: "npm:~2.3.2"
   dependenciesMeta:
@@ -2535,7 +2535,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 10c0/ff395dc0d4fd26feb3bc8ed405d396eee6741efd6f026db2fc51a7dc0634e472aa7ef05c9d27b069f41884997dea7d07d69e478047916e5849964b515029314d
+  checksum: 10c0/a81e2268be82ce431714ab13214b75750a066f9c5e3a29cc085963a4dd2f3bbff0b17c0a14227c0499aa513a5f3271622158e2bc3cc33a5462ee958a22f5517a
   languageName: node
   linkType: hard
 
@@ -2721,10 +2721,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:4.0.2, tailwindcss@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "tailwindcss@npm:4.0.2"
-  checksum: 10c0/772a849adb363d208c5d4525e28958583d6c6aae0e04bf0318f31cc040f63a59adc15ec92541956a4cdfd5b9dd33d2dd216eba1010d3e4f6aff6deeb1a9e87cd
+"tailwindcss@npm:4.0.4, tailwindcss@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "tailwindcss@npm:4.0.4"
+  checksum: 10c0/2f430f81a981c9dfd7072ce7cd6f9935a5e36187a4f12e998caa2b5d159f1acf4ebd1d608b06272bf94a041c24b17cd5f625d049972dccdf6a75027eb03f916e
   languageName: node
   linkType: hard
 
@@ -2837,14 +2837,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^6.0.11":
-  version: 6.0.11
-  resolution: "vite@npm:6.0.11"
+"vite@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "vite@npm:6.1.0"
   dependencies:
     esbuild: "npm:^0.24.2"
     fsevents: "npm:~2.3.3"
-    postcss: "npm:^8.4.49"
-    rollup: "npm:^4.23.0"
+    postcss: "npm:^8.5.1"
+    rollup: "npm:^4.30.1"
   peerDependencies:
     "@types/node": ^18.0.0 || ^20.0.0 || >=22.0.0
     jiti: ">=1.21.0"
@@ -2885,7 +2885,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10c0/a0537f9bf8d6ded740646a4aa44b8dbf442d3005e75f7b27e981ef6011f22d4759f5eb643a393c0ffb8d21e2f50fb5f774d3a53108fb96a10b0f83697e8efe84
+  checksum: 10c0/e1cad1cfbd29923a37d2dbd60f7387901ed8356758073a0226cbe844fd032425ba3bf41651332cab4965d5c54d0b51d208889ff32ce81bd282d230c0c9f0f8f1
   languageName: node
   linkType: hard
 
@@ -2967,18 +2967,18 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:^1.9.4"
     "@openrouter/ai-sdk-provider": "npm:^0.2.0"
-    "@tailwindcss/vite": "npm:^4.0.2"
+    "@tailwindcss/vite": "npm:^4.0.4"
     "@types/react": "npm:^19.0.8"
     "@types/react-dom": "npm:^19.0.3"
     "@vitejs/plugin-react": "npm:^4.3.4"
     ai: "npm:^4.1.24"
-    motion: "npm:^12.0.6"
+    motion: "npm:^12.4.0"
     posthog-js: "npm:^1.215.5"
     react: "npm:^19.0.0"
     react-dom: "npm:^19.0.0"
-    tailwindcss: "npm:^4.0.2"
+    tailwindcss: "npm:^4.0.4"
     typescript: "npm:^5.7.3"
-    vite: "npm:^6.0.11"
+    vite: "npm:^6.1.0"
     vite-plugin-svgr: "npm:^4.3.0"
     zod: "npm:^3.24.1"
     zustand: "npm:^5.0.3"

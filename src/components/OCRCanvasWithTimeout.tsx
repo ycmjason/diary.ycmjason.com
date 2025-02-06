@@ -13,7 +13,7 @@ export const OCRCanvasWithTimeout = ({
   onRecognized: (e: { text: string }) => void;
   readonly?: boolean;
 } & HTMLAttributes<HTMLCanvasElement>) => {
-  const [isDebouncing, setIsDebouncing] = useState(false);
+  const [isDrawEnded, setIsEnded] = useState(false);
   const debounceAbortControllerRef = useRef<AbortController>(null);
   const transitionEndHandlerRef = useRef<() => void>(null);
 
@@ -24,11 +24,11 @@ export const OCRCanvasWithTimeout = ({
         transitionEndHandlerRef.current?.();
       }}
       onDrawStart={() => {
-        setIsDebouncing(false);
+        setIsEnded(false);
         debounceAbortControllerRef.current?.abort();
       }}
       onDrawEnd={({ canvasController }) => {
-        setIsDebouncing(true);
+        setIsEnded(true);
 
         const abortController = new AbortController();
         debounceAbortControllerRef.current?.abort();
@@ -46,11 +46,11 @@ export const OCRCanvasWithTimeout = ({
             text,
           });
           canvasController.clear();
-          setIsDebouncing(false);
+          setIsEnded(false);
         };
       }}
       style={
-        isDebouncing
+        isDrawEnded
           ? {
               transitionDuration: `${timeout * 0.4}ms`,
               transitionDelay: `${timeout * 0.6}ms`,
