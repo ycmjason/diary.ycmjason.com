@@ -10,7 +10,7 @@ export const streamText = (prompt: string) =>
   ai.streamText({
     model: openrouter('meta-llama/llama-3.2-3b-instruct:free'),
     temperature: 0.7,
-    system: SYSTEM_PROMPT,
+    system: `Today's date: ${new Date().toISOString()}\n${SYSTEM_PROMPT}`,
     prompt,
     maxTokens: 100,
   });
