@@ -3,7 +3,7 @@ import SYSTEM_PROMPT from './SYSTEM_PROMPT?raw';
 import * as ai from 'ai';
 import posthog from 'posthog-js';
 
-const PREFERRED_MODEL = 'google/gemini-2.0-flash-lite-preview-02-05:free';
+const PREFERRED_MODEL_ID = 'google/gemini-2.0-flash-lite-preview-02-05:free';
 
 const openrouter = createOpenRouter({
   apiKey: import.meta.env.VITE_OPENROUTER_API_KEY,
@@ -31,42 +31,46 @@ type OpenRouterModelDescriptor = {
   };
 };
 
-const getAvailableModels = async () => {
-  const res = await fetch('https://openrouter.ai/api/v1/models');
-  const { data: models }: { data: OpenRouterModelDescriptor[] } = await res.json();
-  const freeModels = models
-    .filter(({ pricing }) => Object.values(pricing).every(price => price === '0'))
-    .sort((m1, m2) => m2.created - m1.created);
-
-  const preferredModel = freeModels.find(({ id }) => id === PREFERRED_MODEL);
-  if (preferredModel !== undefined) {
-    return [preferredModel];
+const getModelId = async (): Promise<string> => {
+  const preferredModelResponse = await fetch(
+    `https://openrouter.ai/api/v1/models/${PREFERRED_MODEL_ID}/endpoints`,
+  );
+  if (preferredModelResponse.ok) {
+    await preferredModelResponse.body?.cancel();
+    return PREFERRED_MODEL_ID;
   }
 
   posthog.capture('preferred model missing');
+  const res = await fetch('https://openrouter.ai/api/v1/models');
+  const { data: models }: { data: OpenRouterModelDescriptor[] } = await res.json();
+  const [fallbackModel] = models
+    .filter(({ pricing }) => Object.values(pricing).every(price => price === '0'))
+    .sort((m1, m2) => m2.created - m1.created);
 
-  return freeModels;
+  if (!fallbackModel) {
+    posthog.capture('no free model');
+    alert('Cannot find free LLM models! 😭 Sorry, diary not working right now!');
+    throw new Error('No free model');
+  }
+
+  return fallbackModel.id;
 };
 
-const availableModelsPromise = getAvailableModels();
+const modelIdPromise = getModelId();
 
 export const streamText = async (
   prompt: string,
 ): Promise<ReturnType<typeof ai.streamText> & { modelId: string }> => {
-  const [model] = await availableModelsPromise;
-  if (!model) {
-    alert('cannot find free LLM models :( sorry diary not working');
-    throw new Error('No free model');
-  }
+  const modelId = await modelIdPromise;
 
   return Object.assign(
     ai.streamText({
-      model: openrouter(model.id),
+      model: openrouter(modelId),
       temperature: 0.7,
       system: `Today's date: ${new Date().toISOString()}\n${SYSTEM_PROMPT}`,
       prompt,
       maxTokens: 100,
     }),
-    { modelId: model.id },
+    { modelId },
   );
 };
