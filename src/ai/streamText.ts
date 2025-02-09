@@ -3,7 +3,7 @@ import SYSTEM_PROMPT from './SYSTEM_PROMPT?raw';
 import * as ai from 'ai';
 import posthog from 'posthog-js';
 
-const PREFERRED_MODEL = 'google/gemini-2.0-flash-lite-previe-02-05:free';
+const PREFERRED_MODEL = 'google/gemini-2.0-flash-lite-preview-02-05:free';
 
 const openrouter = createOpenRouter({
   apiKey: import.meta.env.VITE_OPENROUTER_API_KEY,
@@ -43,7 +43,6 @@ const getAvailableModels = async () => {
     return [preferredModel];
   }
 
-  console.log('miss');
   posthog.capture('preferred model missing');
 
   return freeModels;
