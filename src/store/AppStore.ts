@@ -22,9 +22,9 @@ export const toggleInputMode = (): void => {
   }));
 };
 
-export const submitPromptAndStream = async (prompt: string): Promise<void> => {
+export const submitPromptAndStream = async (prompt: string): Promise<{ modelId: string }> => {
   useAppStore.setState({ isReplying: true });
-  const { textStream, finishReason } = streamText(prompt);
+  const { textStream, finishReason, modelId } = await streamText(prompt);
 
   for await (const chunk of textStream) {
     useAppStore.setState(state => ({
@@ -39,4 +39,5 @@ export const submitPromptAndStream = async (prompt: string): Promise<void> => {
   }
 
   useAppStore.setState({ isReplying: false });
+  return { modelId };
 };

@@ -6,17 +6,17 @@ import { InputModeButton } from './components/InputModeButton';
 import { submitPromptAndStream, useAppStore } from './store/AppStore';
 import { MultilineInput } from './components/MultilineInput';
 import { AnimatePresence } from 'motion/react';
-import { usePostHog } from 'posthog-js/react';
+import posthog from 'posthog-js';
 
 const REPLY_FADE_DURATION = 800;
 
 function App(): ReactNode {
-  const posthog = usePostHog();
   const { isReplying, replyMessage, inputMode } = useAppStore();
 
   const onSubmit = async (prompt: string) => {
-    await submitPromptAndStream(prompt);
+    const { modelId } = await submitPromptAndStream(prompt);
     posthog.capture('submit llm', {
+      modelId,
       prompt,
       inputMode,
       response: useAppStore.getState().replyMessage,
@@ -24,8 +24,8 @@ function App(): ReactNode {
   };
 
   return (
-    <div className="mx-auto flex min-h-lvh max-w-6xl flex-col items-center gap-4 p-4">
-      <VintagePaper className="relative flex h-[calc(100lvh-2rem)] max-h-[calc(1.4141*(100lvw-2rem))] flex-col">
+    <div className="mx-auto flex min-h-svh max-w-6xl flex-col items-center gap-4 p-4">
+      <VintagePaper className="relative flex h-[calc(100svh-2rem)] max-h-[calc(1.4141*(100lvw-2rem))] flex-col">
         <div className="m-4">
           <h1>YCMJason's Diary</h1>
           <div className="text-xs">
