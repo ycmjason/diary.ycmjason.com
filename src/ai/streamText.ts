@@ -31,15 +31,46 @@ type OpenRouterModelDescriptor = {
   };
 };
 
+type OpenRouterModelEndpointDescriptor = {
+  id: string;
+  name: string;
+  created: number;
+  description: string;
+  architecture: {
+    tokenizer: string;
+    instruct_type: string;
+    modality: string;
+  };
+  endpoints: {
+    name: string;
+    context_length: number;
+    pricing: {
+      request: string;
+      image: string;
+      prompt: string;
+      completion: string;
+    };
+    provider_name: string;
+    quantization: string;
+    max_completion_tokens: number;
+    max_prompt_tokens: number | null;
+    supported_parameters: string[];
+  }[];
+};
+
 const getModelId = async (): Promise<string> => {
   const preferredModelResponse = await fetch(
     `https://openrouter.ai/api/v1/models/${PREFERRED_MODEL_ID}/endpoints`,
   );
   if (preferredModelResponse.ok) {
+    const preferredModelData: { data: OpenRouterModelEndpointDescriptor } =
+      await preferredModelResponse.json();
+    if (preferredModelData.data.endpoints.length > 0) {
+      return PREFERRED_MODEL_ID;
+    }
+  } else {
     await preferredModelResponse.body?.cancel();
-    return PREFERRED_MODEL_ID;
   }
-
   posthog.capture('preferred model missing');
   const res = await fetch('https://openrouter.ai/api/v1/models');
   const { data: models }: { data: OpenRouterModelDescriptor[] } = await res.json();
