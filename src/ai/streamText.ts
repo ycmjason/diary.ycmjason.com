@@ -3,7 +3,7 @@ import SYSTEM_PROMPT from './SYSTEM_PROMPT?raw';
 import * as ai from 'ai';
 import posthog from 'posthog-js';
 
-const PREFERRED_MODEL_ID = 'google/gemma-3n-e4b-it:free';
+const PREFERRED_MODEL_ID = 'meta-llama/llama-3.3-8b-instruct:free';
 
 const openrouter = createOpenRouter({
   apiKey: import.meta.env.VITE_OPENROUTER_API_KEY,
