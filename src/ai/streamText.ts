@@ -3,7 +3,7 @@ import SYSTEM_PROMPT from './SYSTEM_PROMPT?raw';
 import * as ai from 'ai';
 import posthog from 'posthog-js';
 
-const PREFERRED_MODEL_ID = 'google/gemini-2.0-flash-exp:free';
+const PREFERRED_MODEL_ID = 'google/gemma-3n-e4b-it:free';
 
 const openrouter = createOpenRouter({
   apiKey: import.meta.env.VITE_OPENROUTER_API_KEY,
